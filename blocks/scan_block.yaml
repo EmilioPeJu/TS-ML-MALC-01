@@ -1,0 +1,64 @@
+- builtin.parameters.string:
+    name: mri
+    description: MRI for created block
+
+- builtin.parameters.string:
+    name: config_dir
+    description: Where to store saved configs
+
+- builtin.parameters.string:
+    name: initial_design
+    description: Design to load at init
+    default:
+
+- builtin.parameters.string:
+    name: label
+    description: Label for the scan block
+    default:
+
+- builtin.defines.docstring:
+    value: |
+      Scan that drives a motion controller and 3 detectors
+
+- builtin.defines.cmd_string:
+    name: hostname
+    cmd: hostname -s
+
+- scanning.controllers.RunnableController:
+    mri: $(mri)
+    config_dir: $(config_dir)
+    template_designs: $(yamldir)/$(yamlname)_designs
+    initial_design: $(initial_design)
+    description: |
+      Scan with detectors and motor controller. Mapping and imaging detectors
+      make an interesting pattern when scanning simx and simy in range -10
+      to 10.
+
+- scanning.parts.DatasetTablePart:
+    name: DSET
+
+- builtin.parts.LabelPart:
+    value: $(label)
+
+- scanning.parts.SimultaneousAxesPart:
+
+- scanning.parts.DetectorChildPart:
+    name: DIFFRACTION
+    mri: $(hostname)-ML-DET-01
+
+- scanning.parts.DetectorChildPart:
+    name: IMAGING
+    mri: $(hostname)-ML-DET-02
+
+- scanning.parts.DetectorChildPart:
+    name: IZERO
+    mri: $(hostname)-ML-DET-03
+
+- scanning.parts.DetectorChildPart:
+    name: LOAD
+    mri: $(hostname)-ML-DET-04
+    initial_frames_per_step: 0
+
+- demo.parts.MotionChildPart:
+    name: MOT
+    mri: $(hostname)-ML-MOT-01

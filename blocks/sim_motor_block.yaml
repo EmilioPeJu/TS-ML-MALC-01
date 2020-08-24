@@ -1,0 +1,19 @@
+- builtin.parameters.string:
+    name: mri
+    description: Malcolm resource id of the Block
+
+- builtin.parameters.string:
+    name: pv_prefix
+    description: The root PV for the motor record
+
+- builtin.controllers.StatefulController:
+    mri: $(mri)
+
+- pmac.includes.motor_records:
+    pv_prefix: $(pv_prefix)
+
+- ca.parts.CADoublePart:
+    name: velocity
+    description: The velocity for a move conducted via the demand Attribute
+    pv: $(pv_prefix).VELO
+

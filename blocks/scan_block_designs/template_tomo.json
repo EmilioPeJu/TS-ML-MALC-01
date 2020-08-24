@@ -1,0 +1,53 @@
+{
+  "attributes": {
+    "layout": {
+      "DIFFRACTION": {
+        "x": 0.0, 
+        "y": 0.0, 
+        "visible": false
+      }, 
+      "IMAGING": {
+        "x": 0.0, 
+        "y": -5.0862630303072365e-06, 
+        "visible": true
+      }, 
+      "IZERO": {
+        "x": 0.0, 
+        "y": 0.0, 
+        "visible": false
+      }, 
+      "LOAD": {
+        "x": 0.0, 
+        "y": -139.5999959309896, 
+        "visible": true
+      }, 
+      "MOT": {
+        "x": 0.0, 
+        "y": 139.6000010172526, 
+        "visible": true
+      }
+    }, 
+    "exports": {}, 
+    "simultaneousAxes": [
+      "simtheta"
+    ], 
+    "label": "Tomography"
+  }, 
+  "children": {
+    "DIFFRACTION": {
+      "design": ""
+    }, 
+    "IMAGING": {
+      "design": ""
+    }, 
+    "IZERO": {
+      "design": ""
+    }, 
+    "LOAD": {
+      "design": ""
+    }, 
+    "MOT": {
+      "design": ""
+    }
+  }
+}

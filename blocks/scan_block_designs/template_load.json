@@ -1,0 +1,53 @@
+{
+  "attributes": {
+    "layout": {
+      "DIFFRACTION": {
+        "x": 0.0, 
+        "y": 0.0, 
+        "visible": false
+      }, 
+      "IMAGING": {
+        "x": 0.0, 
+        "y": 0.0, 
+        "visible": false
+      }, 
+      "IZERO": {
+        "x": 0.0, 
+        "y": 0.0, 
+        "visible": false
+      }, 
+      "LOAD": {
+        "x": 0.0, 
+        "y": -69.80000305175781, 
+        "visible": true
+      }, 
+      "MOT": {
+        "x": 0.0, 
+        "y": 69.80000305175781, 
+        "visible": true
+      }
+    }, 
+    "exports": {}, 
+    "simultaneousAxes": [
+      "simload"
+    ], 
+    "label": "Load ramp"
+  }, 
+  "children": {
+    "DIFFRACTION": {
+      "design": ""
+    }, 
+    "IMAGING": {
+      "design": ""
+    }, 
+    "IZERO": {
+      "design": ""
+    }, 
+    "LOAD": {
+      "design": ""
+    }, 
+    "MOT": {
+      "design": ""
+    }
+  }
+}

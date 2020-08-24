@@ -1,0 +1,66 @@
+# Define the parameters this Block will take
+- builtin.parameters.string:
+    name: mri
+    description: Malcolm resource id of the Block
+
+- builtin.parameters.string:
+    name: config_dir
+    description: Where to store saved configs
+
+- builtin.parameters.string:
+    name: pv_prefix
+    description: The prefix to the pvs used for this motion block
+
+- builtin.defines.docstring:
+    value: |
+      Device Block that controls 2 child counters each being controlled by an
+      epics sim motor pv. The prefix to the motor is set as a parameter to the
+      block, the suffixes are taken to be :M1 and :M2.
+
+- builtin.controllers.ManagerController:
+    mri: $(mri)
+    config_dir: $(config_dir)
+    description: $(docstring)
+
+# Add the motor blocks
+- TS.blocks.sim_motor_block:
+    mri: $(mri):M1
+    pv_prefix: $(pv_prefix):M1
+
+- TS.blocks.sim_motor_block:
+    mri: $(mri):M2
+    pv_prefix: $(pv_prefix):M2
+
+- TS.blocks.sim_motor_block:
+    mri: $(mri):M3
+    pv_prefix: $(pv_prefix):M3
+
+- TS.blocks.sim_motor_block:
+    mri: $(mri):M4
+    pv_prefix: $(pv_prefix):M4
+
+- TS.blocks.sim_motor_block:
+    mri: $(mri):M5
+    pv_prefix: $(pv_prefix):M5
+
+# Add Parts to use the motor record move functions
+- TS.parts.MotorMovePart:
+    name: simx
+    mri: $(mri):M1
+
+- TS.parts.MotorMovePart:
+    name: simy
+    mri: $(mri):M2
+
+- TS.parts.MotorMovePart:
+    name: simz
+    mri: $(mri):M3
+
+- TS.parts.MotorMovePart:
+    name: simtheta
+    mri: $(mri):M4
+
+- TS.parts.MotorMovePart:
+    name: simload
+    mri: $(mri):M5
+

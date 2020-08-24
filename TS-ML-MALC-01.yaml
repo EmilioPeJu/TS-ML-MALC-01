@@ -1,0 +1,112 @@
+#!/usr/bin/env imalcolm
+
+# To start the IOC, run Launcher -> Utilities -> GDA SWMR AreaDetector Sim
+
+#==========================================================
+# Configuration
+#==========================================================
+
+- builtin.defines.cmd_string:
+    name: hostname
+    cmd: hostname -s
+
+- builtin.defines.export_env_string:
+    name: EPICS_CA_SERVER_PORT
+    value: 6064
+
+- builtin.defines.export_env_string:
+    name: EPICS_CA_REPEATER_PORT
+    value: 6065
+
+- builtin.defines.string:
+    name: config_dir
+    value: /tmp
+
+- builtin.defines.module_path:
+    name: TS
+    path: $(yamldir)
+
+#=========================================================
+# Add a webserver
+#=========================================================
+- web.blocks.web_server_block:
+    mri: WEB
+
+#==========================================================
+# System block
+#==========================================================
+
+#- system.blocks.system_block:
+#    mri_prefix: $(hostname)-ML-MALC-01
+#    iocs: $(hostname)-EA-IOC-01
+#    pv_prefix: $(hostname)-ML-MALC-01
+#    subnet_validation: 0
+#    config_dir: /tmp
+
+#==========================================================
+# Motion block
+#==========================================================
+
+- TS.blocks.motion_block:
+    mri: $(hostname)-ML-MOT-01
+    config_dir: $(config_dir)
+    pv_prefix: $(hostname)-MO-SIM-01
+
+#==========================================================
+# Detector blocks
+#==========================================================
+
+- demo.blocks.detector_block:
+    mri: $(hostname)-ML-DET-01
+    config_dir: $(config_dir)
+    label: Diffraction detector
+
+- ADSimDetector.blocks.sim_detector_runnable_block:
+    mri_prefix: $(hostname)-ML-DET-02
+    config_dir: $(config_dir)
+    pv_prefix: $(hostname)-AD-SIM-01
+    label: Imaging detector
+    drv_suffix: CAM
+
+- demo.blocks.detector_block:
+    mri: $(hostname)-ML-DET-03
+    config_dir: $(config_dir)
+    label: Izero detector
+    width: 1
+    height: 1
+
+- demo.blocks.detector_block:
+    mri: $(hostname)-ML-DET-04
+    config_dir: $(config_dir)
+    label: Load detector
+    width: 1
+    height: 1
+
+#==========================================================
+# Scan blocks
+#==========================================================
+
+- TS.blocks.scan_block:
+    mri: $(hostname)-ML-SCAN-01
+    config_dir: $(config_dir)
+    initial_design: template_mapping
+    label: Mapping scan block
+
+- TS.blocks.scan_block:
+    mri: $(hostname)-ML-SCAN-02
+    config_dir: $(config_dir)
+    initial_design: template_tomo
+    label: Tomography scan block
+
+- TS.blocks.scan_block:
+    mri: $(hostname)-ML-SCAN-03
+    config_dir: $(config_dir)
+    initial_design: template_load
+    label: Load ramp scan block
+
+- TS.blocks.scan_block_no_detector:
+    mri: $(hostname)-ML-SCAN-04
+    config_dir: $(config_dir)
+    initial_design: template_no_detector
+    label: No detector scan block
+

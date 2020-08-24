@@ -1,0 +1,55 @@
+{
+  "attributes": {
+    "layout": {
+      "DIFFRACTION": {
+        "x": 0.0, 
+        "y": -69.80000686645508, 
+        "visible": true
+      }, 
+      "IMAGING": {
+        "x": 0.0, 
+        "y": 0.0, 
+        "visible": false
+      }, 
+      "IZERO": {
+        "x": 0.0, 
+        "y": 69.79999923706055, 
+        "visible": true
+      }, 
+      "LOAD": {
+        "x": 0.0, 
+        "y": 209.40000534057617, 
+        "visible": true
+      }, 
+      "MOT": {
+        "x": 0.0, 
+        "y": -209.39999771118164, 
+        "visible": true
+      }
+    }, 
+    "exports": {}, 
+    "simultaneousAxes": [
+      "simx", 
+      "simy", 
+      "simz"
+    ], 
+    "label": "Mapping x y z"
+  }, 
+  "children": {
+    "DIFFRACTION": {
+      "design": ""
+    }, 
+    "IMAGING": {
+      "design": ""
+    }, 
+    "IZERO": {
+      "design": ""
+    }, 
+    "LOAD": {
+      "design": ""
+    }, 
+    "MOT": {
+      "design": ""
+    }
+  }
+}
