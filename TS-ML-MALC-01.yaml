@@ -11,6 +11,10 @@
     cmd: hostname -s
 
 - builtin.defines.export_env_string:
+    name: EPICS_PVAS_SERVER_PORT
+    value: 6075
+
+- builtin.defines.export_env_string:
     name: EPICS_CA_SERVER_PORT
     value: 6064
 
